@@ -16,6 +16,7 @@
 
 package com.coorchice.supertextview;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class SecondActivity extends Activity {
     private SuperTextView stv_1;
     private SuperTextView stv_4;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,20 +52,12 @@ public class SecondActivity extends Activity {
 //    btn.setAutoAdjust(true);
         btn.addAdjuster(new RippleAdjuster(getResources().getColor(R.color.opacity_5_a58fed)));
 
-        btn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                LogUtils.e("onTouch");
-                return false;
-            }
+        btn.setOnTouchListener((v, event) -> {
+            LogUtils.e("onTouch");
+            return false;
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtils.e("onClick");
-            }
-        });
+        btn.setOnClickListener(v -> LogUtils.e("onClick"));
 
         findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
             @Override
