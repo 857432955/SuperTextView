@@ -16,8 +16,12 @@ import com.coorchice.library.gifdecoder.GifDrawable;
 import com.coorchice.supertextview.SuperTextView.Adjuster.MoveEffectAdjuster;
 import com.coorchice.supertextview.SuperTextView.Adjuster.OpportunityDemoAdjuster;
 import com.coorchice.supertextview.SuperTextView.Adjuster.RippleAdjuster;
+import com.coorchice.supertextview.Utils.LogUtils;
 
 
+/**
+ * @author Admin
+ */
 public class MainActivity extends Activity {
     //
     private SuperTextView stv_17;
@@ -40,6 +44,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        LogUtils.i("MainActivity666666");
+        LogUtils.showAllElementsInfo();
     }
 
     private void initView() {
