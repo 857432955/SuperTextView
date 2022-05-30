@@ -127,6 +127,8 @@ public class GifActivity extends Activity {
                         stvGifScreen.setScaleType(SuperTextView.ScaleType.FIT_XY);
                         Toast.makeText(GifActivity.this, "ScaleType：FIT_XY", Toast.LENGTH_SHORT).show();
                         break;
+                    default:
+                        break;
                 }
             }
         });
