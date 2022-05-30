@@ -23,12 +23,11 @@ import java.util.List;
 import com.coorchice.library.SuperTextView;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 

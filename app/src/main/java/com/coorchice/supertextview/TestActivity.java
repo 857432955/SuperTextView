@@ -17,31 +17,27 @@
 package com.coorchice.supertextview;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.coorchice.library.OnDrawableClickedListenerAdapter;
 import com.coorchice.library.SuperTextView;
 import com.coorchice.library.utils.LogUtils;
-import com.coorchice.library.utils.STVUtils;
 import com.coorchice.library.utils.track.Event;
 import com.coorchice.library.utils.track.TimeEvent;
 import com.coorchice.library.utils.track.Tracker;
 
-public class TestActivity extends ActionBarActivity {
+/**
+ * @author Admin
+ */
+public class TestActivity extends AppCompatActivity {
 
     private SuperTextView stv_0;
     private SuperTextView stv_1;
@@ -51,7 +47,6 @@ public class TestActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtils.DEBUG = true;
         setContentView(R.layout.activity_test);
         setFinishOnTouchOutside(true);
         init();
@@ -69,7 +64,7 @@ public class TestActivity extends ActionBarActivity {
                 LogUtils.e("stv_1：" + "OnDrawStart");
             }
         });
-        stv_1.setOnDrawableClickedListener(new OnDrawableClickedListenerAdapter(){
+        stv_1.setOnDrawableClickedListener(new OnDrawableClickedListenerAdapter() {
             @Override
             public void onDrawable1Clicked(SuperTextView stv) {
                 LogUtils.e("stv_1：" + "onDrawable1Clicked");
@@ -106,7 +101,7 @@ public class TestActivity extends ActionBarActivity {
 //        });
         SuperTextView stv = (SuperTextView) LayoutInflater.from(this).inflate(R.layout.stv, rootView, false);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300, 100);
-        params.setMargins(100, 50, 0 , 100);
+        params.setMargins(100, 50, 0, 100);
         stv.setLayoutParams(params);
         stv.setTextColor(Color.parseColor("#666666"));
         stv.setSolid(Color.parseColor("#FFFDF4"));

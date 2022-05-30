@@ -25,8 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 /**
- * @author coorchice
- * @date 2019/09/03
+ * @author Admin
  */
 public class GifDrawable extends Drawable implements Gif {
 
@@ -79,7 +78,9 @@ public class GifDrawable extends Drawable implements Gif {
 
     @Override
     public void draw(Canvas canvas) {
-        if (gifDecoder == null || gifDecoder.isDestroy()) return;
+        if (gifDecoder == null || gifDecoder.isDestroy()) {
+            return;
+        }
         synchronized (gifDecoder.lock) {
             if (frame != null) {
                 canvas.drawBitmap(frame, gifDecoder.getBounds(), getBounds(), paint);
@@ -339,7 +340,9 @@ public class GifDrawable extends Drawable implements Gif {
      */
     @Override
     public void destroy() {
-        if (!destroyable) return;
+        if (!destroyable) {
+            return;
+        }
         setCallback(null);
         stop();
         onFrameListener = null;
@@ -372,7 +375,9 @@ public class GifDrawable extends Drawable implements Gif {
 
     @Override
     public void invalidateSelf() {
-        if (gifDecoder == null && !gifDecoder.isPlaying()) return;
+        if (gifDecoder == null && !gifDecoder.isPlaying()) {
+            return;
+        }
         if (getCallback() != null) {
             if (getCallback() instanceof View && onAttachStateChangeListener == null) {
                 onAttachStateChangeListener = new View.OnAttachStateChangeListener() {

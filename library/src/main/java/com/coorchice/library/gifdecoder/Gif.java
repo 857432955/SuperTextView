@@ -30,24 +30,28 @@ public interface Gif {
 
     /**
      * 获取 Gif 的宽
+     *
      * @return
      */
     int getWidth();
 
     /**
      * 获取 Gif 的高
+     *
      * @return
      */
     int getHeight();
 
     /**
      * 获取 Gif 总帧数
+     *
      * @return 返回 Gif 总帧数
      */
     int getFrameCount();
 
     /**
      * 获取 Gif 当前帧间隔，单位毫秒（ms）
+     *
      * @return
      */
     int getFrameDuration();
@@ -68,7 +72,7 @@ public interface Gif {
 
     /**
      * 跳转到 Gif 指定帧。
-     *
+     * <p>
      * 指定帧取值范围为 [0, 帧总数) 之间。
      *
      * @param frame 指定帧位置。
@@ -77,7 +81,7 @@ public interface Gif {
 
     /**
      * 提取 Gif 指定帧图像。
-     *
+     * <p>
      * 指定帧取值范围为 [0, 帧总数) 之间。
      *
      * @param frame 指定帧位置。
@@ -88,12 +92,14 @@ public interface Gif {
 
     /**
      * 获取 Gif 底层指针地址
+     *
      * @return
      */
     long getPtr();
 
     /**
      * 获取用于渲染 Gif 的 Bitmap 内存
+     *
      * @return
      */
     Bitmap getBitmap();
@@ -105,6 +111,7 @@ public interface Gif {
 
     /**
      * 是否在播放
+     *
      * @return
      */
     boolean isPlaying();
@@ -116,13 +123,14 @@ public interface Gif {
 
     /**
      * 是否被销毁
+     *
      * @return
      */
     boolean isDestroy();
 
     /**
      * 销毁。
-     *
+     * <p>
      * 你不能使用一个以及被销毁的 Gif。
      */
     void destroy();
@@ -146,6 +154,7 @@ public interface Gif {
 
     /**
      * 是否启用了严格模式
+     *
      * @return
      */
     boolean isStrict();

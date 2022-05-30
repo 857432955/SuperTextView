@@ -29,8 +29,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author coorchice
- * @date 2019/11/05
+ * @author Admin
  */
 public class GifCache {
 
@@ -44,13 +43,17 @@ public class GifCache {
 
     private boolean refCountContainer(String key) {
         for (String temp : refCount) {
-            if (TextUtils.equals(temp, key)) return true;
+            if (TextUtils.equals(temp, key)) {
+                return true;
+            }
         }
         return false;
     }
 
     private void refCountRemove(String key) {
-        if (key == null) return;
+        if (key == null) {
+            return;
+        }
         if (refCount.contains(key)) {
             refCount.remove(key);
         } else {
@@ -61,12 +64,16 @@ public class GifCache {
                     break;
                 }
             }
-            if (r != null) refCount.remove(r);
+            if (r != null) {
+                refCount.remove(r);
+            }
         }
     }
 
     private String findKey(String key) {
-        if (key == null) return null;
+        if (key == null) {
+            return null;
+        }
         String relKey = key;
         if (!map.containsKey(key)) {
             relKey = null;
@@ -81,7 +88,9 @@ public class GifCache {
     }
 
     private void put(String key, GifDrawable value) {
-        if (key == null || value == null) return;
+        if (key == null || value == null) {
+            return;
+        }
         synchronized (map) {
             String relKey = findKey(key);
             if (relKey != null) {
@@ -105,10 +114,14 @@ public class GifCache {
     }
 
     public GifDrawable get(String key) {
-        if (key == null) return null;
+        if (key == null) {
+            return null;
+        }
         synchronized (map) {
             String relKey = findKey(key);
-            if (relKey == null) return null;
+            if (relKey == null) {
+                return null;
+            }
             GifDrawable gifDrawable = map.get(relKey);
             if (gifDrawable != null) {
                 refCountRemove(relKey);
@@ -119,10 +132,14 @@ public class GifCache {
     }
 
     public GifDrawable remove(String key) {
-        if (key == null) return null;
+        if (key == null) {
+            return null;
+        }
         synchronized (map) {
             String relKey = findKey(key);
-            if (relKey == null) return null;
+            if (relKey == null) {
+                return null;
+            }
             GifDrawable remove = map.remove(relKey);
             if (remove != null) {
                 remove.setDestroyable(true);
@@ -162,7 +179,9 @@ public class GifCache {
             }
         } else {
             GifDrawable gifDrawable = Holder.INSTANCE.get(relKey);
-            if (gifDrawable == null) return null;
+            if (gifDrawable == null) {
+                return null;
+            }
             if (gifDrawable.getCallback() == null) {
                 gifDrawable.gotoFrame(0);
                 gifDrawable.play();
@@ -184,7 +203,9 @@ public class GifCache {
             }
         } else {
             GifDrawable gifDrawable = Holder.INSTANCE.get(relKey);
-            if (gifDrawable == null) return null;
+            if (gifDrawable == null) {
+                return null;
+            }
             if (gifDrawable.getCallback() == null) {
                 gifDrawable.gotoFrame(0);
                 gifDrawable.play();
@@ -212,7 +233,9 @@ public class GifCache {
             }
         } else {
             GifDrawable gifDrawable = Holder.INSTANCE.get(relKey);
-            if (gifDrawable == null) return;
+            if (gifDrawable == null) {
+                return;
+            }
             if (gifDrawable.getCallback() == null) {
                 gifDrawable.gotoFrame(0);
                 gifDrawable.play();

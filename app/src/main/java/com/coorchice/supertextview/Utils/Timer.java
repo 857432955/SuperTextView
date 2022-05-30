@@ -21,7 +21,7 @@ import android.util.Log;
 import com.coorchice.supertextview.BuildConfig;
 
 /**
- * Created by coorchice on 2017/10/12.
+ * @author Admin
  */
 
 public enum Timer {
@@ -32,16 +32,16 @@ public enum Timer {
 
     public static final int LOG_E = 0x001;
 
-    public void begin(){
+    public void begin() {
         begin(System.currentTimeMillis());
     }
 
-    public void begin(long startTime){
+    public void begin(long startTime) {
         this.startTime = startTime;
     }
 
-    public long deltaT(long endTime){
-        if (startTime != 0){
+    public long deltaT(long endTime) {
+        if (startTime != 0) {
             long temp = startTime;
             startTime = 0;
             return endTime - temp;
@@ -50,18 +50,18 @@ public enum Timer {
         }
     }
 
-    public String printDeltaT(String tag){
+    public String printDeltaT(String tag) {
         return printDeltaT(tag, System.currentTimeMillis());
     }
 
-    public String printDeltaT(String tag, long endTime){
+    public String printDeltaT(String tag, long endTime) {
         StringBuilder sb = new StringBuilder();
         sb.append(tag);
-        if (!tag.contains(":")){
+        if (!tag.contains(":")) {
             sb.append(": ");
         }
         long deltaT = deltaT(endTime);
-        if (deltaT != -1){
+        if (deltaT != -1) {
             sb.append("+ ").append(deltaT).append(" ms");
         } else {
             sb.append("统计参数错误，请仔细核对！");
@@ -69,10 +69,11 @@ public enum Timer {
         return sb.toString();
     }
 
-    public void logDeltaT(String tag, int type){
-        if (BuildConfig.DEBUG)
-            if (type == LOG_E){
+    public void logDeltaT(String tag, int type) {
+        if (BuildConfig.DEBUG) {
+            if (type == LOG_E) {
                 Log.e("Timer: ", printDeltaT(tag));
             }
+        }
     }
 }

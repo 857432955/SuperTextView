@@ -14,16 +14,14 @@
  * Last modified 18-9-2 下午1:22
  */
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.internal.util.LogUtil;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.internal.util.LogUtil;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.coorchice.library.SuperTextView;
 import com.coorchice.supertextview.SuperTextView.Adjuster.MoveEffectAdjuster;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

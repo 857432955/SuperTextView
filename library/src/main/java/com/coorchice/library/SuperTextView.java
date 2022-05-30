@@ -117,11 +117,11 @@ public class SuperTextView extends TextView {
     private Path solidPath;
     private RectF strokeLineRectF;
     private RectF solidRectF;
-    private float leftTopCorner[] = new float[2];
-    private float rightTopCorner[] = new float[2];
-    private float leftBottomCorner[] = new float[2];
-    private float rightBottomCorner[] = new float[2];
-    private float corners[] = new float[8];
+    private float[] leftTopCorner = new float[2];
+    private float[] rightTopCorner = new float[2];
+    private float[] leftBottomCorner = new float[2];
+    private float[] rightBottomCorner = new float[2];
+    private float[] corners = new float[8];
     private float[] drawableBounds = new float[4];
     private float drawableWidth;
     private float drawableHeight;
@@ -263,9 +263,9 @@ public class SuperTextView extends TextView {
                     } catch (Exception e) {
                         e.printStackTrace();
                         drawable = null;
-                        try{
+                        try {
                             setUrlImage(typedArray.getString(R.styleable.SuperTextView_stv_state_drawable), drawableAsBackground);
-                        }catch (Exception e2){
+                        } catch (Exception e2) {
                             e2.printStackTrace();
                         }
                     }
@@ -297,9 +297,9 @@ public class SuperTextView extends TextView {
                     } catch (Exception e) {
                         e.printStackTrace();
                         drawable2 = null;
-                        try{
+                        try {
                             setUrlImage2(typedArray.getString(R.styleable.SuperTextView_stv_state_drawable2));
-                        }catch (Exception e2){
+                        } catch (Exception e2) {
                             e2.printStackTrace();
                         }
                     }
@@ -379,8 +379,9 @@ public class SuperTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (getVisibility() != VISIBLE || !isAttachedToWindow() || getWidth() <= 0 || getHeight() <= 0)
+        if (getVisibility() != VISIBLE || !isAttachedToWindow() || getWidth() <= 0 || getHeight() <= 0) {
             return;
+        }
         long startDrawTime = System.currentTimeMillis();
         Tracker.notifyEvent(tracker, TimeEvent.create(Event.OnDrawStart, startDrawTime));
         width = getWidth();
@@ -402,7 +403,9 @@ public class SuperTextView extends TextView {
 
             drawStateDrawable(canvas);
         }
-        if (stateDrawable2Layer == DrawableLayer.BEFORE_TEXT) drawStateDrawable2(canvas);
+        if (stateDrawable2Layer == DrawableLayer.BEFORE_TEXT) {
+            drawStateDrawable2(canvas);
+        }
         Tracker.notifyEvent(tracker, TimeEvent.create(Event.OnDrawDrawableEnd, System.currentTimeMillis() - startDrawDrawableTime));
         isNeedToAdjust(canvas, Adjuster.Opportunity.BEFORE_TEXT);
         if (needScroll) {
@@ -419,9 +422,12 @@ public class SuperTextView extends TextView {
         if (needScroll) {
             canvas.translate(getScrollX(), getScrollY());
         }
-        if (!drawableAsBackground && stateDrawableLayer == DrawableLayer.AFTER_TEXT)
+        if (!drawableAsBackground && stateDrawableLayer == DrawableLayer.AFTER_TEXT) {
             drawStateDrawable(canvas);
-        if (stateDrawable2Layer == DrawableLayer.AFTER_TEXT) drawStateDrawable2(canvas);
+        }
+        if (stateDrawable2Layer == DrawableLayer.AFTER_TEXT) {
+            drawStateDrawable2(canvas);
+        }
         isNeedToAdjust(canvas, Adjuster.Opportunity.AT_LAST);
         if (needScroll) {
             canvas.translate(-getScrollX(), -getScrollY());
@@ -683,7 +689,9 @@ public class SuperTextView extends TextView {
         Tracker.notifyEvent(tracker, TimeEvent.create(Event.OnCreateDrawableBackgroundShaderEnd, System.currentTimeMillis() - startCreateDrawableBackgroundShaderTime));
         long startUpdateDrawableBackgroundShaderTime = System.currentTimeMillis();
         if (drawableBgCanvas != null && (needCopyDrawableToShader || drawable instanceof GifDrawable)) {
-            if (orgBounds == null) orgBounds = new Rect();
+            if (orgBounds == null) {
+                orgBounds = new Rect();
+            }
             orgBounds.set(drawable.getBounds());
             drawable.getBounds().set(suitedSize[2], suitedSize[3], suitedSize[2] + suitedSize[0], suitedSize[3] + suitedSize[1]);
             long startCopyDrawableBackgroundToShaderTime = System.currentTimeMillis();
@@ -1476,7 +1484,7 @@ public class SuperTextView extends TextView {
     public SuperTextView setDrawable(int drawableRes) {
         byte[] bytes = getResBytes(drawableRes);
         if (bytes != null && GifDecoder.isGif(bytes)) {
-            if (GIF_CACHE_ENABLE){
+            if (GIF_CACHE_ENABLE) {
                 return setDrawable(GifCache.fromResource(getContext(), drawableRes));
             } else {
                 return setDrawable(GifDrawable.createDrawable(bytes));
@@ -1494,7 +1502,9 @@ public class SuperTextView extends TextView {
                 } else {
                     drawable = GifDrawable.createDrawable(bytes);
                 }
-                if (drawable != null) drawable.setCallback(this);
+                if (drawable != null) {
+                    drawable.setCallback(this);
+                }
             } else {
                 drawable = getResources().getDrawable(drawableRes).mutate();
             }
@@ -1531,7 +1541,9 @@ public class SuperTextView extends TextView {
                 } else {
                     drawable2 = GifDrawable.createDrawable(bytes);
                 }
-                if (drawable2 != null) drawable2.setCallback(this);
+                if (drawable2 != null) {
+                    drawable2.setCallback(this);
+                }
             } else {
                 drawable2 = getResources().getDrawable(drawableRes).mutate();
             }
@@ -1541,7 +1553,9 @@ public class SuperTextView extends TextView {
     }
 
     private void resetGifDrawable(Drawable drawable) {
-        if (drawable != null) drawable.setCallback(null);
+        if (drawable != null) {
+            drawable.setCallback(null);
+        }
         if (drawable instanceof GifDrawable) {
             ((GifDrawable) drawable).stop();
             ((GifDrawable) drawable).destroy();
@@ -2269,7 +2283,7 @@ public class SuperTextView extends TextView {
         ImageEngine.checkEngine();
         // 缓存当前的imageUrl，当下载完成后需要校验
         curImageUrl = url;
-        if (STVUtils.isGif(url) && GIF_CACHE_ENABLE){
+        if (STVUtils.isGif(url) && GIF_CACHE_ENABLE) {
             GifCache.fromUrl(url, new ImageEngine.Callback() {
                 @Override
                 public void onCompleted(Drawable drawable) {
@@ -2308,7 +2322,6 @@ public class SuperTextView extends TextView {
     }
 
 
-
     /**
      * 将一个网络图片作为SuperTextView的StateDrawable2。
      * 在调用这个函数前，建议开发者根据当前所使用的图片框架实现{@link com.coorchice.library.image_engine.Engine}，
@@ -2324,7 +2337,7 @@ public class SuperTextView extends TextView {
         ImageEngine.checkEngine();
         // 缓存当前的imageUrl，当下载完成后需要校验
         curImageUrl2 = url;
-        if (STVUtils.isGif(url) && GIF_CACHE_ENABLE){
+        if (STVUtils.isGif(url) && GIF_CACHE_ENABLE) {
             GifCache.fromUrl(url, new ImageEngine.Callback() {
                 @Override
                 public void onCompleted(Drawable drawable) {
@@ -2530,7 +2543,9 @@ public class SuperTextView extends TextView {
      * @return
      */
     public SuperTextView setScaleType(ScaleType scaleType) {
-        if (backgroundScaleType == scaleType) return this;
+        if (backgroundScaleType == scaleType) {
+            return this;
+        }
         this.backgroundScaleType = scaleType;
         drawableBackgroundShader = null;
         postInvalidate();

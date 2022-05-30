@@ -31,12 +31,11 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Project Name:SuperTextView
- * Author:CoorChice
- * Date:2018/5/13
  * Notes:
  */
 
 /**
+ * @author Admin
  * @hide
  */
 public class STVUtils {
@@ -125,7 +124,9 @@ public class STVUtils {
      * @return
      */
     public static byte[] getResBytes(Context context, int drawableRes) {
-        if (context == null || drawableRes == 0) return null;
+        if (context == null || drawableRes == 0) {
+            return null;
+        }
         InputStream is = null;
         try {
             is = context.getResources().openRawResource(drawableRes);

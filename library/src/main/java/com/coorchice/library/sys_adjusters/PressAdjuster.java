@@ -16,6 +16,8 @@
 
 package com.coorchice.library.sys_adjusters;
 
+import static com.coorchice.library.SuperTextView.NO_COLOR;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,16 +27,13 @@ import android.view.MotionEvent;
 
 import com.coorchice.library.SuperTextView;
 
-import static com.coorchice.library.SuperTextView.NO_COLOR;
-
 /**
  * Project Name:SuperTextView
- * Author:CoorChice
- * Date:2017/8/2
  * Notes:
  */
 
 /**
+ * @author Admin
  * @hide
  */
 public class PressAdjuster extends SuperTextView.Adjuster {
@@ -108,7 +107,7 @@ public class PressAdjuster extends SuperTextView.Adjuster {
                 }
                 if (pressTextColor != NO_COLOR && v.getCurrentTextColor() != pressTextColor) {
                     v.setTextColor(pressTextColor);
-                } else if (pressBgColor != NO_COLOR){
+                } else if (pressBgColor != NO_COLOR) {
                     v.postInvalidate();
                 }
                 break;
@@ -117,9 +116,11 @@ public class PressAdjuster extends SuperTextView.Adjuster {
                 press = false;
                 if (normalTextColor != NO_COLOR && v.getCurrentTextColor() != normalTextColor) {
                     v.setTextColor(normalTextColor);
-                } else if (pressBgColor != NO_COLOR){
+                } else if (pressBgColor != NO_COLOR) {
                     v.postInvalidate();
                 }
+                break;
+            default:
                 break;
         }
         return true;

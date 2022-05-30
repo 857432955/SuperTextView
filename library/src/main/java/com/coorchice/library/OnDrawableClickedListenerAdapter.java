@@ -19,27 +19,27 @@ package com.coorchice.library;
 /**
  * OnDrawableClickedListener 适配类，你可以选择性的重写 drawable1 或者 drawable2 的点击回调，
  * 而不必每次都需要实现两个接口。
- *
- * @author coorchice
- * @date 2019/06/10
+ * @author Admin
  */
 public class OnDrawableClickedListenerAdapter implements SuperTextView.OnDrawableClickedListener {
 
     /**
      * 当 Drawable1 被点击时触发
+     *
      * @param stv
      */
     @Override
-    public void onDrawable1Clicked(SuperTextView stv){
+    public void onDrawable1Clicked(SuperTextView stv) {
 
     }
 
     /**
      * 当 Drawable2 被点击时触发
+     *
      * @param stv
      */
     @Override
-    public void onDrawable2Clicked(SuperTextView stv){
+    public void onDrawable2Clicked(SuperTextView stv) {
 
     }
 }

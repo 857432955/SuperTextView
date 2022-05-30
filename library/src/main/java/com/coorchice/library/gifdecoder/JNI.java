@@ -20,8 +20,6 @@ import android.graphics.Bitmap;
 
 /**
  * Project Name:CoorChiceLibOne
- * Author:CoorChice
- * Date:2019/8/29
  * Notes:
  */
 public class JNI {
@@ -48,6 +46,7 @@ public class JNI {
 
     /**
      * 判断是否是gif
+     *
      * @param path
      * @return
      */
@@ -55,6 +54,7 @@ public class JNI {
 
     /**
      * 判断是否是gif
+     *
      * @param bytes
      * @return
      */
@@ -170,6 +170,7 @@ public class JNI {
 
     /**
      * 拷贝 Gif 解析数据
+     *
      * @param ptr 源 Gif 指针
      * @return
      */

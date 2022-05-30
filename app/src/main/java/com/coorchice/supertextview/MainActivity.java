@@ -1,12 +1,5 @@
 package com.coorchice.supertextview;
 
-import com.coorchice.library.SuperTextView;
-import com.coorchice.library.gifdecoder.GifDrawable;
-import com.coorchice.library.utils.LogUtils;
-import com.coorchice.supertextview.SuperTextView.Adjuster.MoveEffectAdjuster;
-import com.coorchice.supertextview.SuperTextView.Adjuster.OpportunityDemoAdjuster;
-import com.coorchice.supertextview.SuperTextView.Adjuster.RippleAdjuster;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -17,6 +10,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.coorchice.library.SuperTextView;
+import com.coorchice.library.gifdecoder.GifDrawable;
+import com.coorchice.supertextview.SuperTextView.Adjuster.MoveEffectAdjuster;
+import com.coorchice.supertextview.SuperTextView.Adjuster.OpportunityDemoAdjuster;
+import com.coorchice.supertextview.SuperTextView.Adjuster.RippleAdjuster;
 
 
 public class MainActivity extends Activity {
@@ -37,7 +36,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         density = getResources().getDisplayMetrics().density;
-        LogUtils.DEBUG = true;
         SuperTextView.GIF_CACHE_ENABLE = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

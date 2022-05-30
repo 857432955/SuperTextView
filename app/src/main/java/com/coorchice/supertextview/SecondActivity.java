@@ -16,8 +16,13 @@
 
 package com.coorchice.supertextview;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+
 import com.coorchice.library.SuperTextView;
-import com.coorchice.library.gifdecoder.GifDrawable;
 import com.coorchice.library.utils.track.Event;
 import com.coorchice.library.utils.track.TimeEvent;
 import com.coorchice.library.utils.track.Tracker;
@@ -26,12 +31,9 @@ import com.coorchice.supertextview.SuperTextView.Adjuster.Ripple2Adjuster;
 import com.coorchice.supertextview.SuperTextView.Adjuster.RippleAdjuster;
 import com.coorchice.supertextview.Utils.LogUtils;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-
+/**
+ * @author Admin
+ */
 public class SecondActivity extends Activity {
 
     private SuperTextView btn;

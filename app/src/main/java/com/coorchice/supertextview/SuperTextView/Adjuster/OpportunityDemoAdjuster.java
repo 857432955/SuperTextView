@@ -25,9 +25,8 @@ import android.graphics.Paint;
 
 /**
  * Project Name:SuperTextView
- * Author:CoorChice
- * Date:2017/4/17
  * Notes:
+ * @author Admin
  */
 
 public class OpportunityDemoAdjuster extends SuperTextView.Adjuster {

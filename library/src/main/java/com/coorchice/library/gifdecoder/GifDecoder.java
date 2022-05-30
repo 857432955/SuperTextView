@@ -134,6 +134,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public int getWidth() {
         check();
         return JNI.getWidth(ptr);
@@ -144,6 +145,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public int getHeight() {
         check();
         return JNI.getHeight(ptr);
@@ -154,6 +156,7 @@ public class GifDecoder implements Gif {
      *
      * @return 返回 Gif 总帧数
      */
+    @Override
     public int getFrameCount() {
         check();
         return JNI.getFrameCount(ptr);
@@ -164,6 +167,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public int getFrameDuration() {
         check();
         return JNI.getFrameDuration(ptr);
@@ -174,6 +178,7 @@ public class GifDecoder implements Gif {
      *
      * @param duration 帧间隔，单位毫秒（ms）
      */
+    @Override
     public void setFrameDuration(int duration) {
         check();
         JNI.setFrameDuration(ptr, duration);
@@ -184,6 +189,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public int getCurrentFrame() {
         check();
         return JNI.getCurrentFrame(ptr);
@@ -196,6 +202,7 @@ public class GifDecoder implements Gif {
      *
      * @param frame 指定帧位置。
      */
+    @Override
     public void gotoFrame(final int frame) {
         check();
         if (canPlay) {
@@ -229,6 +236,7 @@ public class GifDecoder implements Gif {
      *
      * @param frame 指定帧位置。
      */
+    @Override
     public Bitmap getFrame(int frame) {
         check();
         Bitmap tempFrame = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
@@ -265,6 +273,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public int updateFrame() {
         check();
         int r = 1;
@@ -282,6 +291,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public long getPtr() {
         return ptr;
     }
@@ -291,6 +301,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public Bitmap getBitmap() {
         return buffer;
     }
@@ -308,6 +319,7 @@ public class GifDecoder implements Gif {
     /**
      * 播放
      */
+    @Override
     public void play() {
         if (isDestroy()) {
             canPlay = false;
@@ -338,6 +350,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public boolean isPlaying() {
         return canPlay;
     }
@@ -345,6 +358,7 @@ public class GifDecoder implements Gif {
     /**
      * 暂停播放
      */
+    @Override
     public void stop() {
         canPlay = false;
         handler.removeCallbacksAndMessages(null);
@@ -359,6 +373,7 @@ public class GifDecoder implements Gif {
      *
      * @return
      */
+    @Override
     public boolean isDestroy() {
         return ptr == 0;
     }
@@ -368,6 +383,7 @@ public class GifDecoder implements Gif {
      * <p>
      * 你不能使用一个以及被销毁的 Gif。
      */
+    @Override
     public void destroy() {
         canPlay = false;
         handler.removeCallbacksAndMessages(null);
@@ -395,6 +411,7 @@ public class GifDecoder implements Gif {
      *
      * @param onFrameListener
      */
+    @Override
     public void setOnFrameListener(OnFrameListener onFrameListener) {
         this.onFrameListener = onFrameListener;
     }

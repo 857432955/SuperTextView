@@ -70,7 +70,9 @@ public class DefaultEngine implements Engine {
             @Override
             public void run() {
                 try {
-                    if (TextUtils.isEmpty(url)) return;
+                    if (TextUtils.isEmpty(url)) {
+                        return;
+                    }
                     String key = STVUtils.MD5(url);
                     byte[] bytes = cache.get(key);
                     if (bytes == null) {
@@ -79,7 +81,9 @@ public class DefaultEngine implements Engine {
                             cache.put(key, bytes);
                         }
                     }
-                    if (bytes == null) return;
+                    if (bytes == null) {
+                        return;
+                    }
                     Drawable drawable = null;
                     if (STVUtils.isGif(url)) {
                         drawable = GifDrawable.createDrawable(bytes);

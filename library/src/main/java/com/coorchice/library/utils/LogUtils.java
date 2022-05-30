@@ -20,89 +20,110 @@ import java.util.Locale;
 
 import android.util.Log;
 
+import com.coorchice.library.BuildConfig;
+
 /**
  * Project Name:
- * Author:CoorChice
- * Date:16/8/23
  * Notes:
  */
 
 /**
+ * @author Admin
  * @hide
  */
 public class LogUtils {
 
-  public static boolean DEBUG = false;
-  private static final int INDEX = 4;
+    public static boolean DEBUG = BuildConfig.DEBUG;
+    private static final int INDEX = 4;
 
-  private static String getPrefix() {
-    StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[INDEX];
-    String className = stackTraceElement.getClassName();
-    int classNameStartIndex = className.lastIndexOf(".") + 1;
-    className = className.substring(classNameStartIndex);
-    String methodName = stackTraceElement.getMethodName();
-    int methodLine = stackTraceElement.getLineNumber();
-    String format = "%s-%s(L:%d)";
-    return String.format(Locale.CHINESE, format, className, methodName, methodLine);
-  }
-
-  public static void v(String content) {
-    if (DEBUG) Log.v(getPrefix(), content);
-  }
-
-  public static void v(String content, Throwable tr) {
-    if (DEBUG) Log.v(getPrefix(), content, tr);
-  }
-
-  public static void d(String content) {
-    if (DEBUG) Log.d(getPrefix(), content);
-  }
-
-  public static void d(String content, Throwable tr) {
-    if (DEBUG) Log.d(getPrefix(), content, tr);
-  }
-
-  public static void i(String content) {
-    if (DEBUG) Log.i(getPrefix(), content);
-  }
-
-  public static void i(String content, Throwable tr) {
-    if (DEBUG) Log.i(getPrefix(), content, tr);
-  }
-
-  public static void w(String content) {
-    if (DEBUG) Log.e(getPrefix(), content);
-  }
-
-  public static void w(String content, Throwable tr) {
-    if (DEBUG) Log.w(getPrefix(), content, tr);
-  }
-
-  public static void e(String content) {
-    if (DEBUG) Log.e(getPrefix(), content);
-  }
-
-  public static void e(String content, Throwable tr) {
-    if (DEBUG) Log.e(getPrefix(), content, tr);
-  }
-
-  public static String showAllElementsInfo() {
-    String print = "";
-    int count = 0;
-    StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-    for (StackTraceElement stackTraceElement : stackTraceElements) {
-      count++;
-      print += String.format("ClassName:%s " +
-          "\nMethodName:%s " +
-          "\nMethodLine:%d " +
-          "\n当前是第%d个 " +
-          "\n---------------------------- " +
-          "\n ",
-          stackTraceElement.getClassName(),
-          stackTraceElement.getMethodName(),
-          stackTraceElement.getLineNumber(),
-          count);
+    private static String getPrefix() {
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[INDEX];
+        String className = stackTraceElement.getClassName();
+        int classNameStartIndex = className.lastIndexOf(".") + 1;
+        className = className.substring(classNameStartIndex);
+        String methodName = stackTraceElement.getMethodName();
+        int methodLine = stackTraceElement.getLineNumber();
+        String format = "%s-%s(L:%d)";
+        return String.format(Locale.CHINESE, format, className, methodName, methodLine);
     }
-    return print;
-  }
+
+    public static void v(String content) {
+        if (DEBUG) {
+            Log.v(getPrefix(), content);
+        }
+    }
+
+    public static void v(String content, Throwable tr) {
+        if (DEBUG) {
+            Log.v(getPrefix(), content, tr);
+        }
+    }
+
+    public static void d(String content) {
+        if (DEBUG) {
+            Log.d(getPrefix(), content);
+        }
+    }
+
+    public static void d(String content, Throwable tr) {
+        if (DEBUG) {
+            Log.d(getPrefix(), content, tr);
+        }
+    }
+
+    public static void i(String content) {
+        if (DEBUG) {
+            Log.i(getPrefix(), content);
+        }
+    }
+
+    public static void i(String content, Throwable tr) {
+        if (DEBUG) {
+            Log.i(getPrefix(), content, tr);
+        }
+    }
+
+    public static void w(String content) {
+        if (DEBUG) {
+            Log.e(getPrefix(), content);
+        }
+    }
+
+    public static void w(String content, Throwable tr) {
+        if (DEBUG) {
+            Log.w(getPrefix(), content, tr);
+        }
+    }
+
+    public static void e(String content) {
+        if (DEBUG) {
+            Log.e(getPrefix(), content);
+        }
+    }
+
+    public static void e(String content, Throwable tr) {
+        if (DEBUG) {
+            Log.e(getPrefix(), content, tr);
+        }
+    }
+
+    public static String showAllElementsInfo() {
+        String print = "";
+        int count = 0;
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        for (StackTraceElement stackTraceElement : stackTraceElements) {
+            count++;
+            print += String.format("ClassName:%s " +
+                            "\nMethodName:%s " +
+                            "\nMethodLine:%d " +
+                            "\n当前是第%d个 " +
+                            "\n---------------------------- " +
+                            "\n ",
+                    stackTraceElement.getClassName(),
+                    stackTraceElement.getMethodName(),
+                    stackTraceElement.getLineNumber(),
+                    count);
+        }
+        return print;
+    }
 }

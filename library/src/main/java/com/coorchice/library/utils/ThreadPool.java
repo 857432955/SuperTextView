@@ -24,47 +24,48 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
+ * @author Admin
  * @hide
  */
 public class ThreadPool {
 
-  private ExecutorService threadPool;
+    private ExecutorService threadPool;
 
-  private ScheduledThreadPoolExecutor globleExecutor;
+    private ScheduledThreadPoolExecutor globleExecutor;
 
-  private ThreadPool() {
-    if (threadPool == null) {
-      threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
-      globleExecutor = new ScheduledThreadPoolExecutor(1, new ThreadPoolExecutor.DiscardPolicy());
+    private ThreadPool() {
+        if (threadPool == null) {
+            threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+            globleExecutor = new ScheduledThreadPoolExecutor(1, new ThreadPoolExecutor.DiscardPolicy());
+        }
     }
-  }
 
-  private static final class Holder {
-    private static final ThreadPool instance = new ThreadPool();
-  }
+    private static final class Holder {
+        private static final ThreadPool instance = new ThreadPool();
+    }
 
-  public static final ThreadPool get() {
-    return Holder.instance;
-  }
+    public static final ThreadPool get() {
+        return Holder.instance;
+    }
 
-  public static void run(Runnable runnable) {
-    ThreadPool.get().threadPool.execute(runnable);
-  }
+    public static void run(Runnable runnable) {
+        ThreadPool.get().threadPool.execute(runnable);
+    }
 
-  public static <T> Future<T> submit(Callable<T> call) {
-    return ThreadPool.get().threadPool.submit(call);
-  }
+    public static <T> Future<T> submit(Callable<T> call) {
+        return ThreadPool.get().threadPool.submit(call);
+    }
 
-  public static final ScheduledThreadPoolExecutor globleExecutor(){
-    return Holder.instance.globleExecutor;
-  }
+    public static final ScheduledThreadPoolExecutor globleExecutor() {
+        return Holder.instance.globleExecutor;
+    }
 
-  /**
-   * 关闭线程池,这将导致改线程池立即停止接受新的线程请求,但已经存在的任务仍然会执行,直到完成。
-   */
-  public synchronized void shutDown() {
-    ThreadPool.get().threadPool.shutdownNow();
-    ThreadPool.get().globleExecutor.shutdownNow();
-  }
+    /**
+     * 关闭线程池,这将导致改线程池立即停止接受新的线程请求,但已经存在的任务仍然会执行,直到完成。
+     */
+    public synchronized void shutDown() {
+        ThreadPool.get().threadPool.shutdownNow();
+        ThreadPool.get().globleExecutor.shutdownNow();
+    }
 
 }

@@ -16,6 +16,8 @@
 
 package com.coorchice.supertextview.SuperTextView.ImageEngine;
 
+import android.content.Context;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -23,30 +25,28 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.coorchice.library.ImageEngine;
 import com.coorchice.library.image_engine.Engine;
 
-import android.content.Context;
-
 /**
  * Project Name:SuperTextView
- * Author:CoorChice
- * Date:2018/5/13
  * Notes:
+ *
+ * @author Admin
  */
 
 public class GlideEngine implements Engine {
 
-  private Context context;
+    private Context context;
 
-  public GlideEngine(Context context) {
-    this.context = context;
-  }
+    public GlideEngine(Context context) {
+        this.context = context;
+    }
 
-  @Override
-  public void load(String url, final ImageEngine.Callback callback) {
-    Glide.with(context).load(url).into(new SimpleTarget<GlideDrawable>() {
-      @Override
-      public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-        callback.onCompleted(resource);
-      }
-    });
-  }
+    @Override
+    public void load(String url, final ImageEngine.Callback callback) {
+        Glide.with(context).load(url).into(new SimpleTarget<GlideDrawable>() {
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                callback.onCompleted(resource);
+            }
+        });
+    }
 }

@@ -26,13 +26,12 @@ import android.text.TextUtils;
 
 /**
  * Project Name:SuperTextView
- * Author:CoorChice
- * Date:2018/5/13
  * Notes:
  */
 
 /**
  * SuperTextView的图片加载引擎
+ * @author Admin
  */
 public class ImageEngine {
 
